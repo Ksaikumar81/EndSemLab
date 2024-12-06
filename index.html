@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <script>
+        // Function to validate the form
+        function validateForm(event) {
+            // Get the form inputs
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+
+            // Regular expression for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Validate username
+            if (username === "") {
+                alert("Username cannot be empty.");
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+
+            // Validate email format
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+
+            // Allow form submission if validation passes
+            return true;
+        }
+
+        // Attach the validation function to the form submit event
+        window.onload = function() {
+            const form = document.getElementById("loginForm");
+            form.addEventListener("submit", validateForm);
+        };
+    </script>
+</head>
+<body>
+    <h1>Admin Login</h1>
+    <form id="loginForm" method="post" action="/admin/login">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
